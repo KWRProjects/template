@@ -28,7 +28,9 @@ conda config --add channels conda-forge
 ```
 #### Create env
 
-$HOME\.condarc
+**.condarc**
+* $HOME\.condarc
+* C:\Users\quanp\.condarc
 
 ```yaml
 ssl_verify: true
@@ -46,7 +48,7 @@ pkgs_dirs:
   - C:\ProgramData\Anaconda3\pkgs
 ```
 
-cmd
+**cmd**
 
 ```shell
 conda env create -f environment.yml
