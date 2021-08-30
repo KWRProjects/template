@@ -108,8 +108,16 @@ conda env remove --name smartwaternetwork
 
 ## Datasets
 
-# Temp
+# Template
+
+## shell
+
 ```shell
 
 ```
 
+## image
+
+```markdown
+![alt text](./sub%20folder/image.jpg)
+```
