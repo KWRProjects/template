@@ -4,9 +4,12 @@ channels:
   - defaults
 dependencies:
   - python=3.8
+  - gdal=3.2.2
   - matplotlib
   - numpy
   - pandas
+  - geopandas
   - scikit-learn
-  - gdal==3.2.2
+  - pip:
+    - gdal==3.2.2
 prefix: C:\Anaconda3\envs\projectname
