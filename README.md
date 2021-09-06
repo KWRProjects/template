@@ -38,14 +38,14 @@ channels:
   - conda-forge
   - defaults
 envs_dirs:
-  - C:\ProgramData\Anaconda3\envs
+  - C:\Anaconda3\envs
 ```
 
 optional
 
 ```yaml
 pkgs_dirs:
-  - C:\ProgramData\Anaconda3\pkgs
+  - C:\Anaconda3\pkgs
 ```
 
 **cmd**
