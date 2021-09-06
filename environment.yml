@@ -9,4 +9,4 @@ dependencies:
   - pandas
   - scikit-learn
   - gdal==3.2.2
-prefix: C:\ProgramData\Anaconda3\envs\projectname
+prefix: C:\Anaconda3\envs\projectname
