@@ -60,7 +60,7 @@ conda env list
 #### Activate env
 
 ```shell
-conda activate smartwaternetwork
+conda activate projectname
 
 conda config --add channels conda-forge
 ```
@@ -101,7 +101,7 @@ pip install --ignore-installed -r requirements.txt
 ```shell
 conda deactivate
 
-conda env remove --name smartwaternetwork
+conda env remove --name projectname
 ```
 
 ## Submodules
