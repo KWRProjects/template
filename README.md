@@ -23,6 +23,8 @@ To remove a submodule `git rm -r tool/simulation/wntr`
 
 ### Virtual environment
 
+Conda install at **C:\Anaconda3**.
+
 ```shell
 conda config --add channels conda-forge
 ```
