@@ -10,6 +10,4 @@ dependencies:
   - pandas
   - geopandas
   - scikit-learn
-  - pip:
-    - gdal==3.2.2
 prefix: C:\Anaconda3\envs\projectname
