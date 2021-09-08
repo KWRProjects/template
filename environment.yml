@@ -4,10 +4,16 @@ channels:
   - defaults
 dependencies:
   - python=3.8
-  - gdal=3.2.2
   - matplotlib
+  - scipy
   - numpy
   - pandas
+  - gdal=3.2.2
   - geopandas
   - scikit-learn
+  - seaborn
+  - wntr
+  - pip:
+    - chama
+    - pymoo
 prefix: C:\Anaconda3\envs\projectname
