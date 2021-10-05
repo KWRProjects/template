@@ -1,7 +1,4 @@
-# ProjectName
-
-## DevOps
-### git
+# git
 
 ```shell
 git clone --recurse-submodules -j8 https://github.com/KWRProjects/ProjectName.git
@@ -21,14 +18,28 @@ To remove a submodule `git rm -r tool/simulation/wntr`
 - Commit git commit -m "Removed submodule <name>"
 - Delete the now untracked submodule files rm -rf path_to_submodule
 
-### Virtual environment
+# Docker
+
+```shell
+docker images
+docker rmi
+
+docker system prune -f
+
+docker volume create centos7
+docker run -it -w /DockerShare --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" centos:centos7
+```
+
+# Python
+
+## Virtual environment
 
 Conda install at **C:\Anaconda3**.
 
 ```shell
 conda config --add channels conda-forge
 ```
-#### Create env
+### Create env
 
 **.condarc**
 * $HOME\.condarc
@@ -56,10 +67,9 @@ pkgs_dirs:
 conda env create -f environment.yml
 
 conda env list
-```shell
 ```
 
-#### Activate env
+### Activate env
 
 ```shell
 conda activate projectname
@@ -67,7 +77,7 @@ conda activate projectname
 conda config --add channels conda-forge
 ```
 
-#### Install env
+### Install env
 
 ```shell
 pip install -r requirements.txt
@@ -77,7 +87,7 @@ conda install Package
 pip install Package
 ```
 
-#### Export env
+### Export env
 
 ```shell
 conda env export > environment.yml
@@ -87,7 +97,7 @@ pip freeze > requirements.txt
 pip list --format=freeze > requirements.txt
 ```
 
-#### Update env
+### Update env
 
 [pip update env](https://stackoverflow.com/questions/24764549/upgrade-python-packages-from-requirements-txt-using-pip-command)
 
@@ -98,30 +108,12 @@ pip install --upgrade --force-reinstall -r requirements.txt
 pip install --ignore-installed -r requirements.txt
 ```
 
-#### Deactivate env
+### Deactivate env
 
 ```shell
 conda deactivate
 
 conda env remove --name projectname
-```
-
-## Submodules
-
-## Datasets
-
-# Template
-
-## shell
-
-```shell
-
-```
-
-## image
-
-```markdown
-![alt text](./sub%20folder/image.jpg)
 ```
 
 ## matplotlib
