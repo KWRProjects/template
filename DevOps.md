@@ -1,3 +1,21 @@
+# Docker
+
+```shell
+docker images
+docker rmi
+
+docker system prune -f
+
+docker volume create centos7
+docker run -it -w /root --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/root" centos:centos7
+```
+
+# build-essentials
+
+```shell
+yum groupinstall -y "Development Tools"
+```
+
 # git
 
 ```shell
@@ -17,18 +35,6 @@ To remove a submodule `git rm -r tool/simulation/wntr`
 - Run rm -rf .git/modules/path_to_submodule (no trailing slash).
 - Commit git commit -m "Removed submodule <name>"
 - Delete the now untracked submodule files rm -rf path_to_submodule
-
-# Docker
-
-```shell
-docker images
-docker rmi
-
-docker system prune -f
-
-docker volume create centos7
-docker run -it -w /DockerShare --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" centos:centos7
-```
 
 # Python
 
