@@ -5,7 +5,8 @@ docker images
 docker rmi
 docker system prune -f
 
-docker build --no-cache -t d3d:6_04_00_69364 .
+cd OneDrive/MSOD2work/20210201-KWR/02-Projects/99_Github-template
+docker build --no-cache -t d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 
 docker volume create d3d
 ```
