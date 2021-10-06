@@ -1,16 +1,22 @@
 FROM centos:centos7
 
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y openssl-devel bzip2-devel libffi-devel xz-devel \
+	libxml2-devel boost-devel \
+	wget
+
 WORKDIR /root/Software
 
 COPY Delft3D-6_04_00_69364 /root/Software/Delft3D-6_04_00_69364
 COPY torque-6.0.1 /root/Software/torque-6.0.1
 COPY mpich-3.2 /root/Software/mpich-3.2
+RUN wget https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz &&\
+	tar xvf Python-3.8.9.tgz &&\
+	rm -f Python-3.8.9.tgz
+
 RUN echo $(ls -alh /root/Software)
 
-RUN yum groupinstall -y "Development Tools"
-
 WORKDIR /root/Software/torque-6.0.1
-RUN yum install -y openssl-devel libxml2-devel boost-devel
 RUN ./autogen.sh &&\
 	./configure --prefix=/opt/torque6 2>&1 | tee c.txt &&\
 	make 2>&1 | tee m.txt &&\
@@ -26,5 +32,10 @@ RUN ./configure --prefix=/opt/mpich2 2>&1 | tee c.txt &&\
 	make install 2>&1 | tee mi.txt &&\
 	ll /opt/mpich2/bin &&\
 	PATH=/opt/mpich2/bin:$PATH ; export PATH
+
+WORKDIR /root/Software/Python-3.8.9
+RUN ./configure --enable-optimizations &&\
+	make altinstall
+RUN pip install bpytop 
 
 WORKDIR /root

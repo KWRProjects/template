@@ -15,6 +15,21 @@ docker system prune -f
 docker run -it -w /DockerShare --name d3d --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
 ```
 
+## python3.8
+
+```shell
+yum -y install openssl-devel bzip2-devel libffi-devel xz-devel
+yum -y install wget
+
+cd /root/Software
+wget https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz
+tar xvf /root/Software/Python-3.8.9.tgz
+rm -f /root/Software/Python-3.8.9.tgz
+cd /root/Software/Python-3.8.9
+./configure --enable-optimizations
+make altinstall
+```
+
 # build-essentials
 
 ```shell
