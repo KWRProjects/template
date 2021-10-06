@@ -12,7 +12,7 @@ docker volume create d3d
 
 ```shell
 docker system prune -f
-docker run -it -w /DockerShare --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
+docker run -it -w /DockerShare --name d3d --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
 ```
 
 # build-essentials
