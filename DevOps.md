@@ -12,7 +12,7 @@ docker volume create d3d
 
 ```shell
 docker system prune -f
-docker run -it -w /DockerShare --name d3d --memory="10g" --cpuset-cpus="0-9" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
+docker run -it -w /DockerShare --name d3d --memory="1g" --cpuset-cpus="0-9" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
 
 docker exec -it bf0f58ea0e51 bash
 ```
