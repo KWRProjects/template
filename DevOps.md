@@ -9,6 +9,9 @@ cd OneDrive/MSOD2work/20210201-KWR/02-Projects/99_Github-template
 docker build --no-cache -t kwrprojects/devops:latest -f ./ci/devops-latest.Dockerfile .
 docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 
+docker push kwrprojects/devops:latest
+docker push kwrprojects/d3d:6_04_00_69364
+
 docker volume create d3d
 ```
 
