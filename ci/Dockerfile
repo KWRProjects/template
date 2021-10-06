@@ -36,7 +36,9 @@ RUN ./configure --prefix=/opt/mpich2 2>&1 | tee c.txt &&\
 WORKDIR /root/Software/Python-3.8.9
 RUN ./configure --enable-optimizations &&\
 	make altinstall
-RUN python -m ensurepip --upgrade
-RUN pip install bpytop 
+	
+RUN wget https://bootstrap.pypa.io/get-pip.py &&\
+	python3.8 get-pip.py &&\
+	pip3 install bpytop 
 
 WORKDIR /root
