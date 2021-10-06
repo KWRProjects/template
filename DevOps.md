@@ -3,15 +3,16 @@
 ```shell
 docker images
 docker rmi
-
 docker system prune -f
 
-docker volume create centos7
-docker run -it -w /root --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/root" centos:centos7
+docker build --no-cache -t d3d:6_04_00_69364 .
+
+docker volume create d3d
 ```
 
 ```shell
-docker build --no-cache -t d3d/6_04_00_69364 .
+docker system prune -f
+docker run -it -w /DockerShare --name centos --memory="10g" --cpuset-cpus="0" --volume="//d/DockerShare:/DockerShare" d3d:6_04_00_69364
 ```
 
 # build-essentials
