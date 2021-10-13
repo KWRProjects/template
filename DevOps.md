@@ -22,6 +22,20 @@ docker run -it -w /DockerShare --name d3d --memory="10g" --cpuset-cpus="0-9" --v
 docker exec -it bf0f58ea0e51 bash
 ```
 
+## cmake
+
+```shell
+/DockerShare/DevOps/cmake-3.21.3-linux-x86_64/bin/cmake ..
+/DockerShare/DevOps/cmake-3.21.3-linux-x86_64/bin/cmake --build . --config Release
+```
+
+# gdb
+
+```shell
+gdb runepanetmsx
+r EPA-Almere_3108_72h.inp MSX-Almere_3108_72h.msx MSX-Almere_3108_72h.rpt MSX-Almere_3108_72h.bin
+```
+
 ## python3.8
 
 ```shell
