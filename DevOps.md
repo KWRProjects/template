@@ -168,17 +168,33 @@ conda env remove --name projectname
 ## matplotlib
 
 ```python
+# https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
+
 # row: 3
 # col: 2
 # axs[0, 0] to axs[2, 1]
-fig, axs = plt.subplots(3, 2, figsize=(15, 7))
+fig, axs = plt.subplots(3, 2, figsize=(15, 7), num=1, clear=True)
+
+axs[0, 0].plot(pltx, plty)
+axs[1, 1].scatter(pltx, plty)
 
 # row: 1
 # col: 1
-fig, ax = plt.subplots(figsize=(15, 7))
+fig, ax = plt.subplots(figsize=(15, 7), num=1, clear=True)
+
+ax.plot(pltx, plty,
+        label=rpt_diff_type, linestyle='dashed',
+        color='black', alpha=0.5, lw=0.5)
 
 # set layout, save and close figure
 plt.tight_layout(rect=[0, 0, 1, 0.95])
-plt.savefig()
-plt.close()
+plt.grid(linewidth=0.5, zorder=-1)
+plt.legend(loc='lower center', bbox_to_anchor=(0.2, -0.22, 0.6, 0.2),
+           mode='expand', ncol=10, prop={'size': 6})
+fig.subplots_adjust(bottom=0.2)
+# plt.show()
+plt.savefig(figname, dpi=600)
+plt.close(fig)
+plt.cla()
+plt.clf()
 ```
