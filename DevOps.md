@@ -34,6 +34,8 @@ docker exec -it bf0f58ea0e51 bash
 ```shell
 gdb runepanetmsx
 r EPA-Almere_3108_72h.inp MSX-Almere_3108_72h.msx MSX-Almere_3108_72h.rpt MSX-Almere_3108_72h.bin
+
+backtrace
 ```
 
 ## python3.8
