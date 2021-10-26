@@ -6,33 +6,52 @@ docker rmi
 docker system prune -f
 
 cd OneDrive/MSOD2work/20210201-KWR/02-Projects/99_Github-template
-docker build --no-cache -t kwrprojects/devops:latest -f ./ci/devops-latest.Dockerfile .
-docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 
+docker build --no-cache -t kwrprojects/devops:latest -f ./ci/devops-latest.Dockerfile .
 docker push kwrprojects/devops:latest
+
+docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 docker push kwrprojects/d3d:6_04_00_69364
 
 docker volume create d3d
 ```
 
 ```shell
-docker system prune -f
-docker run -it -w /DockerShare --name d3d --memory="10g" --cpuset-cpus="0-9" --volume="//d/DockerShare:/DockerShare" kwrprojects/d3d:6_04_00_69364
+docker run -it -w /DockerShare --name devops --volume="//d/DockerShare:/DockerShare" kwrprojects/devops
 
 docker exec -it bf0f58ea0e51 bash
 ```
 
-## cmake
+# cmake
+
+## build-linux
 
 ```shell
 /DockerShare/DevOps/cmake-3.21.3-linux-x86_64/bin/cmake ..
+
 /DockerShare/DevOps/cmake-3.21.3-linux-x86_64/bin/cmake --build . --config Release
+```
+
+## build-x64
+
+```shell
+cmake .. -A x64
+cmake --build . --config Release
+```
+
+# execution time
+
+```shell
+time ./runepanet Basisnetwerk_2019_export_KWR_STAD_p3_JvS.inp Basisnetwerk_2019_export_KWR_STAD_p3_JvS.rpt Basisnetwerk_2019_export_KWR_STAD_p3_JvS.bin
+
+time ./runepanetmsx EPA-Almere_3108_72h.inp MSX-Almere_3108_72h.msx MSX-Almere_3108_72h.rpt MSX-Almere_3108_72h.bin
 ```
 
 # gdb
 
 ```shell
 gdb runepanetmsx
+
 r EPA-Almere_3108_72h.inp MSX-Almere_3108_72h.msx MSX-Almere_3108_72h.rpt MSX-Almere_3108_72h.bin
 
 backtrace
