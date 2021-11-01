@@ -187,6 +187,14 @@ conda env remove --name projectname
 ## matplotlib
 
 ```python
+import matplotlib.pyplot as plt
+import matplotlib.colors as colors
+import matplotlib.cm as cmx
+
+cMap = cm = plt.get_cmap('jet')
+cNorm = colors.Normalize(vmin=0, vmax=len(data_org.keys()))
+scalarMap = cmx.ScalarMappable(norm=cNorm, cmap=cMap)
+
 # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
 
 # row: 3
@@ -201,9 +209,17 @@ axs[1, 1].scatter(pltx, plty)
 # col: 1
 fig, ax = plt.subplots(figsize=(15, 7), num=1, clear=True)
 
-ax.plot(pltx, plty,
-        label=rpt_diff_type, linestyle='dashed',
-        color='black', alpha=0.5, lw=0.5)
+i_plt = 0
+for key, val in data_.items():
+    colorVal = scalarMap.to_rgba(i_plt)
+    ax.scatter(np.array(val['x']), np.array(val['y']), label=key, color=colorVal)
+    i_plt += 1
+
+ax.scatter(np.array(data_ref['x']), np.array(data_ref['y']), label='ref', color='black')
+
+# ax.plot(pltx, plty,
+#         label=rpt_diff_type, linestyle='dashed',
+#         color='black', alpha=0.5, lw=0.5)
 
 # set layout, save and close figure
 plt.tight_layout(rect=[0, 0, 1, 0.95])
