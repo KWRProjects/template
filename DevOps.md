@@ -171,6 +171,7 @@ pip list --format=freeze > requirements.txt
 
 ```shell
 conda env update --file environment.yml
+conda env update --file environment.yml --prune
 
 pip install --upgrade --force-reinstall -r requirements.txt
 pip install --ignore-installed -r requirements.txt
