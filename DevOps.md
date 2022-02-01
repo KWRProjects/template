@@ -235,3 +235,25 @@ plt.close(fig)
 plt.cla()
 plt.clf()
 ```
+
+## wntr
+```python
+epa_ref_rst_pressure = epa_ref_rst.node['pressure']
+epa_ref_rst_flow     = epa_ref_rst.link['flowrate'] * 3600.
+
+for i_time in np.arange(0, int(epa_report_hrs[-1]) + 6, 6):
+    self.stdout('std', 'l1', 'result: %d hr' % int(i_time))
+
+    epa_ref_rst_pressure_end = epa_ref_rst_pressure.loc[int(i_time * 3600.), :]
+    epa_ref_rst_flow_end     = epa_ref_rst_flow.loc[int(i_time * 3600.), :]
+    epa_ref_rst_flow_end     = epa_ref_rst_flow_end.abs()
+
+    # epa_ref_rst_node_lim = [0,
+    #                         epa_ref_rst_pressure_end.quantile(0.90)]
+    # epa_ref_rst_link_lim = [0,
+    #                         epa_ref_rst_flow_end.quantile(0.90)]
+    epa_ref_rst_node_lim = [epa_ref_rst_pressure_end.quantile(0.10),
+                            epa_ref_rst_pressure_end.quantile(0.90)]
+    epa_ref_rst_link_lim = [epa_ref_rst_flow_end.quantile(0.10),
+                            epa_ref_rst_flow_end.quantile(0.90)]
+```
