@@ -83,7 +83,7 @@ WORKDIR /root/Software/Python
 COPY ./ci/Python-lib /root/Software/Python/Python-lib
 RUN pip3 install -r /root/Software/Python/Python-lib/requirements.txt
 
-WORKDIR /Docker
+WORKDIR /root
 
 # FROM ubuntu:16.04
 # RUN apt-get update && apt-get install -y \
