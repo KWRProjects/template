@@ -9,6 +9,11 @@ RUN yum install -y vim-enhanced \
 RUN debuginfo-install -y gcc
 
 # Args
+## https://ftp.gnu.org/gnu/gcc/gcc-8.3.0/gcc-8.3.0.tar.gz
+ARG gcc_url="https://ftp.gnu.org/gnu/gcc"
+ARG gcc_version=8.3.0
+ENV GCC_NAME=gcc-${gcc_version}
+
 ## https://download.osgeo.org/proj/proj-6.1.1.tar.gz
 ARG proj_url="https://download.osgeo.org/proj"
 ARG proj_version=6.1.1
@@ -28,6 +33,20 @@ ENV GDAL_NAME=gdal-${gdal_version}
 ARG python_url="https://www.python.org/ftp/python"
 ARG python_version=3.8.9
 ENV PYTHON_NAME=Python-${python_version}
+
+# GCC
+## /usr/lib64/libstdc++.so.6
+WORKDIR /root/Software/GCC
+RUN yum install -y bzip2
+RUN wget --no-check-certificate ${gcc_url}/${GCC_NAME}/${GCC_NAME}.tar.gz &&\
+    tar xf ${GCC_NAME}.tar.gz &&\
+	rm -f ${GCC_NAME}.tar.gz
+RUN cd ${GCC_NAME} &&\
+    ./contrib/download_prerequisites &&\
+    ./configure --enable-languages=c,c++ --disable-multilib &&\
+    make &&\
+    make install &&\
+    export LD_LIBRARY_PATH=/usr/local/lib64:${LD_LIBRARY_PATH}
 
 # Python
 WORKDIR /root/Software/Python
@@ -58,6 +77,7 @@ RUN wget --no-check-certificate ${proj_url}/${PROJ_NAME}.tar.gz &&\
 	rm -f ${PROJ_NAME}.tar.gz
 RUN cd ${PROJ_NAME} &&\
     ./configure &&\
+    make &&\
     make install
 
 ## libkml, /usr/local
@@ -75,13 +95,18 @@ RUN wget --no-check-certificate ${gdal_url}/${gdal_version}/${GDAL_NAME}.tar.gz 
 	rm -f ${GDAL_NAME}.tar.gz
 RUN cd ${GDAL_NAME} &&\
     ./configure --with-libkml --with-proj &&\
+    make &&\
     make install
 
-# Python lib
+# Python-lib, /usr/local/lib/python3.8.9/site-package/
 WORKDIR /root/Software/Python
 
 COPY ./ci/Python-lib /root/Software/Python/Python-lib
 RUN pip3 install -r /root/Software/Python/Python-lib/requirements.txt
+
+WORKDIR /root/Software/Python/Python-lib
+RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
+    cp -r wntr* /usr/local/lib/python3.8/site-packages/
 
 WORKDIR /root
 
