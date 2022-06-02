@@ -106,7 +106,7 @@ RUN pip3 install -r /root/Software/Python/Python-lib/requirements.txt
 
 WORKDIR /root/Software/Python/Python-lib
 RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
-    cp -r wntr* /usr/local/lib/python3.8/site-packages/
+    mv -f wntr* /usr/local/lib/python3.8/site-packages/
 
 WORKDIR /root
 
