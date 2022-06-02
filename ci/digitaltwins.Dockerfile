@@ -85,8 +85,8 @@ RUN wget --no-check-certificate ${libkml_url}/${LIBKML_NAME}.tar.gz &&\
     tar xzf ${LIBKML_NAME}.tar.gz &&\
 	rm -f ${LIBKML_NAME}.tar.gz
 RUN cd install-libkml &&\
-    cp -r include/* /usr/local/include &&\
-    cp -r lib/* /usr/local/lib &&\
+    cp -rf include/* /usr/local/include &&\
+    cp -rf lib/* /usr/local/lib &&\
     ldconfig
 
 ## gdal, /usr/local
@@ -106,7 +106,7 @@ RUN pip3 install -r /root/Software/Python/Python-lib/requirements.txt
 
 WORKDIR /root/Software/Python/Python-lib
 RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
-    mv -f wntr* /usr/local/lib/python3.8/site-packages/
+    cp -rf wntr* /usr/local/lib/python3.8/site-packages/
 
 # rm all
 WORKDIR /root
