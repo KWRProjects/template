@@ -108,6 +108,10 @@ WORKDIR /root/Software/Python/Python-lib
 RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
     mv -f wntr* /usr/local/lib/python3.8/site-packages/
 
+# rm all
+WORKDIR /root
+RUN rm -rf ./Software/*
+
 WORKDIR /root
 
 # FROM ubuntu:16.04
