@@ -3,7 +3,6 @@
 ```shell
 docker images
 docker rmi
-docker system prune -f
 
 cd OneDrive/MSOD2work/20210201-KWR/02-Projects/99_Github-template
 
@@ -13,10 +12,16 @@ docker push kwrprojects/devops:latest
 docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 docker push kwrprojects/d3d:6_04_00_69364
 
-docker volume create d3d
+docker build --no-cache -t kwrprojects/digitaltwins:latest -f ./ci/digitaltwins.Dockerfile .
+docker push kwrprojects/digitaltwins:latest
+
+docker builder prune -af
+docker system prune -f
 ```
 
 ```shell
+docker system prune -f
+]
 docker run -it -w /DockerShare --name devops --volume="//d/DockerShare:/DockerShare" kwrprojects/devops
 
 docker exec -it bf0f58ea0e51 bash
