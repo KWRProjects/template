@@ -148,16 +148,18 @@ RUN apt-get install -y \
 #   gedit \
 #   libcurl4-openssl-dev
 
+RUN pip3 install \
+    setuptools \
+    bpytop \
+    scikit-build
+
 # Python-lib, /usr/local/lib/python3.8.9/site-package/
-WORKDIR /root/Software/Python
+WORKDIR /root/Software
 
-RUN pip3 install setuptools &&\
-    pip3 install bpytop scikit-build
+COPY ./ci/Python-lib /root/Software/Python-lib
+RUN pip3 install -r /root/Software/Python-lib/requirements.txt
 
-COPY ./ci/Python-lib /root/Software/Python/Python-lib
-RUN pip3 install -r /root/Software/Python/Python-lib/requirements.txt
-
-WORKDIR /root/Software/Python/Python-lib
+# WORKDIR /root/Software/Python-lib
 # RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
 #     cp -rf wntr* /usr/local/lib/python3.8/site-packages/
 
