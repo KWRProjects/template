@@ -94,9 +94,11 @@ RUN wget --no-check-certificate ${gdal_url}/${gdal_version}/${GDAL_NAME}.tar.gz 
     tar xzf ${GDAL_NAME}.tar.gz &&\
 	rm -f ${GDAL_NAME}.tar.gz
 RUN cd ${GDAL_NAME} &&\
-    ./configure --with-libkml --with-proj &&\
+    ./configure --with-libkml=/usr/local --with-proj=/usr/local &&\
     make &&\
-    make install
+    make install &&\
+    ldconfig
+CMD gdalinfo --version && gdalinfo --formats && ogrinfo --formats
 
 # Python-lib, /usr/local/lib/python3.8.9/site-package/
 WORKDIR /root/Software/Python
