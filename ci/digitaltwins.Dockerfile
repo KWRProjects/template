@@ -132,10 +132,6 @@ RUN apt-get update
 RUN apt-get install -y \
     vim \
     python3-pip
-
-# RUN apt-get update
-# RUN apt-get install -y \
-#   vim \
 #   autoconf \
 #   libtool \
 #   flex \
