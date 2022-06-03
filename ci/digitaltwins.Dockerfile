@@ -159,13 +159,13 @@ WORKDIR /root/Software
 COPY ./ci/Python-lib /root/Software/Python-lib
 RUN pip3 install -r /root/Software/Python-lib/requirements.txt
 
-# WORKDIR /root/Software/Python-lib
-# RUN rm -rf /usr/local/lib/python3.8/site-packages/wntr* &&\
-#     cp -rf wntr* /usr/local/lib/python3.8/site-packages/
+WORKDIR /root/Software/Python-lib
+RUN rm -rf /usr/local/lib/python3.8/dist-packages/wntr* &&\
+    cp -rf wntr* /usr/local/lib/python3.8/dist-packages/
 
 WORKDIR /root
 
-CMD cat /etc/os-release
+# CMD cat /etc/os-release
 # CMD python --version
 # CMD python -m site
 # CMD pip --version
