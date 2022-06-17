@@ -72,6 +72,10 @@ print(' '.join(pio.kaleido.scope._build_proc_args()))
 ```
 
 ```shell
+C:\Anaconda3\envs\midas\lib\site-packages\kaleido\executable\kaleido.cmd plotly --plotlyjs='C:\\Anaconda3\\envs\\midas\\lib\\site-packages\\plotly\\package_data\\plotly.min.js' --mathjax='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js' --disable-gpu --allow-file-access-from-files --disable-breakpad --disable-dev-shm-usage --no-sandbox
+
+{"data":{"layout": {}}, "format":"svg"}
+
 [0922/185509.685:WARNING:resource_bundle.cc(405)] locale_file_path.empty() for locale
 [0922/185509.743:WARNING:headless_browser_main_parts.cc(83)] Cannot create Pref Service with no user data dir.
 {"code": 0, "message": "Success", "result": null, "version": "0.2.1"}
