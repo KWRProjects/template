@@ -25,3 +25,55 @@ plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.savefig()
 plt.close()
 ```
+
+## plotly engine
+
+### kaleido==0.1.0post1
+
+```shell
+pip install kaleido==0.1.0post1
+```
+
+```python
+import plotly.graph_objects as go
+import numpy as np
+import plotly.io as pio
+np.random.seed(1)
+
+N = 100
+x = np.random.rand(N)
+y = np.random.rand(N)
+colors = np.random.rand(N)
+sz = np.random.rand(N) * 30
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=x,
+    y=y,
+    mode="markers",
+    marker=go.scatter.Marker(
+        size=sz,
+        color=colors,
+        opacity=0.6,
+        colorscale="Viridis"
+    )
+))
+
+fig.write_image('test.png')
+```
+
+### kaleido==0.2.1
+
+**Not working**, [write_image hangs](https://github.com/plotly/Kaleido/issues/110)
+
+```python
+import plotly.io as pio
+print(' '.join(pio.kaleido.scope._build_proc_args()))
+```
+
+```shell
+[0922/185509.685:WARNING:resource_bundle.cc(405)] locale_file_path.empty() for locale
+[0922/185509.743:WARNING:headless_browser_main_parts.cc(83)] Cannot create Pref Service with no user data dir.
+{"code": 0, "message": "Success", "result": null, "version": "0.2.1"}
+[0922/185510.510:ERROR:gpu_init.cc(430)] Passthrough is not supported, GL is swiftshader
+```
