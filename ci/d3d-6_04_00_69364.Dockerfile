@@ -1,7 +1,9 @@
 FROM centos:centos7
 
 RUN yum groupinstall -y "Development Tools"
-RUN yum install -y openssl-devel bzip2-devel libffi-devel xz-devel \
+RUN yum install -y \
+    openssl-devel bzip2-devel \
+    libffi-devel xz-devel \
 	libxml2-devel boost-devel \
 	wget
 
