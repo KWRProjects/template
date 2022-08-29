@@ -32,16 +32,16 @@ RUN ./autogen.sh &&\
     make 2>&1 | tee m.txt &&\
     make install 2>&1 | tee mi.txt &&\
     ll /opt/torque6/bin &&\
-    ll /opt/torque6/lib &&\
-    PATH=/opt/torque6/bin:$PATH ; export PATH &&\
-    LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH ; export LD_LIBRARY_PATH
+    ll /opt/torque6/lib
+RUN export PATH=/opt/torque6/bin:$PATH
+RUN export LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH
 
 WORKDIR /root/Software/mpich-3.2
 RUN ./configure --prefix=/opt/mpich2 2>&1 | tee c.txt &&\
     make 2>&1 | tee m.txt &&\
     make install 2>&1 | tee mi.txt &&\
-    ll /opt/mpich2/bin &&\
-    PATH=/opt/mpich2/bin:$PATH ; export PATH
+    ll /opt/mpich2/bin
+RUN export PATH=/opt/mpich2/bin:$PATH
 
 #WORKDIR /root/Software/Python-3.8.9
 #RUN ./configure --enable-optimizations &&\
@@ -54,6 +54,7 @@ RUN pip3 install -U pip &&\
     Cython numpy
 
 WORKDIR /root/Software/Python/nefis-python-0.4.0
+RUN make dist
 RUN pip3.8 install ./dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 RUN cp -rf ./lib/* /usr/local/lib/
 RUN export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
