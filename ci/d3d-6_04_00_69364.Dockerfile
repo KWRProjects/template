@@ -48,6 +48,6 @@ RUN pip3 install -U pip &&\
     Cython numpy
 
 WORKDIR /root/Software/Python
-RUN pip3.8 install dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
+RUN pip3.8 install nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 
 WORKDIR /root
