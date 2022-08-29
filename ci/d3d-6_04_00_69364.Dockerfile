@@ -42,6 +42,7 @@ RUN ./configure --enable-optimizations &&\
 RUN wget https://bootstrap.pypa.io/get-pip.py &&\
 	python3.8 get-pip.py
 RUN	pip3 install -U pip &&\
-    pip3 install bpytop setuptools scikit-build
+    pip3 install bpytop setuptools scikit-build &&\
+	numpy Cython
 
 WORKDIR /root
