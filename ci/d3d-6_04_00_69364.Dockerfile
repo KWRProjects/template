@@ -40,7 +40,8 @@ RUN ./configure --enable-optimizations &&\
 	make altinstall
 	
 RUN wget https://bootstrap.pypa.io/get-pip.py &&\
-	python3.8 get-pip.py &&\
-	pip3 install bpytop 
+	python3.8 get-pip.py
+RUN	pip3 install -U pip &&\
+    pip3 install bpytop setuptools scikit-build
 
 WORKDIR /root
