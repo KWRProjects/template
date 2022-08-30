@@ -24,20 +24,19 @@ RUN echo $(ls -alh /root/Software)
 
 WORKDIR /root/Software/torque-6.0.1
 RUN ./autogen.sh &&\
-    ./configure --prefix=/opt/torque6 2>&1 | tee c.txt &&\
-    make 2>&1 | tee m.txt &&\
-    make install 2>&1 | tee mi.txt &&\
-    ll /opt/torque6/bin &&\
-    ll /opt/torque6/lib &&\
-    PATH=/opt/torque6/bin:$PATH ; export PATH &&\
-    LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH ; export LD_LIBRARY_PATH
+    ./configure --prefix=/opt/torque6 2>&1 | tee torque-c.txt &&\
+    make 2>&1 | tee torque-m.txt &&\
+    make install 2>&1 | tee torque-mi.txt &&\
+    ls /opt/torque6/bin && ls /opt/torque6/lib
+RUN export PATH=/opt/torque6/bin:$PATH && echo $PATH
+RUN export LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
 
 WORKDIR /root/Software/mpich-3.2
-RUN ./configure --prefix=/opt/mpich2 2>&1 | tee c.txt &&\
-    make 2>&1 | tee m.txt &&\
-    make install 2>&1 | tee mi.txt &&\
-    ll /opt/mpich2/bin &&\
-    PATH=/opt/mpich2/bin:$PATH ; export PATH
+RUN ./configure --prefix=/opt/mpich2 2>&1 | tee mpich-c.txt &&\
+    make 2>&1 | tee mpich-m.txt &&\
+    make install 2>&1 | tee mpich-mi.txt &&\
+    ll /opt/mpich2/bin
+RUN export PATH=/opt/mpich2/bin:$PATH && echo $LD_LIBRARY_PATH
 
 WORKDIR /root/Software/Python-3.8.9
 RUN ./configure --enable-optimizations &&\
@@ -57,6 +56,6 @@ RUN pip3 install -U pip &&\
 #WORKDIR /root/Software/Python/nefis-python-0.4.0
 #RUN pip3 install ./dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 #RUN cp -rf ./lib/* /usr/local/lib/
-#RUN LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ; export LD_LIBRARY_PATH
+#RUN export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
 
 WORKDIR /root
