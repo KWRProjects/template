@@ -12,6 +12,9 @@ docker push kwrprojects/devops:latest
 docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_69364.Dockerfile .
 docker push kwrprojects/d3d:6_04_00_69364
 
+docker build --no-cache -t kwrprojects/nefis -f ./ci/nefis.Dockerfile .
+docker push kwrprojects/nefis
+
 docker build --no-cache -t kwrprojects/digitaltwins:latest -f ./ci/digitaltwins.Dockerfile .
 docker push kwrprojects/digitaltwins:latest
 
