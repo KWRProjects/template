@@ -35,7 +35,7 @@ WORKDIR /root/Software/mpich-3.2
 RUN ./configure --prefix=/opt/mpich2 2>&1 | tee mpich-c.txt &&\
     make 2>&1 | tee mpich-m.txt &&\
     make install 2>&1 | tee mpich-mi.txt &&\
-    ll /opt/mpich2/bin
+    ls /opt/mpich2/bin
 RUN export PATH=/opt/mpich2/bin:$PATH && echo $LD_LIBRARY_PATH
 
 WORKDIR /root/Software/Python-3.8.9
