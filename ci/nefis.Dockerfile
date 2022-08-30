@@ -96,4 +96,13 @@ RUN pip3 install ./dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 RUN cp -rf ./lib/* /usr/local/lib/
 RUN export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
 
+RUN apt-get install -y \
+    libjpeg-dev \
+    libpcre3 libpcre3-dev
+RUN ln -s /usr/lib/libgdal.so.3.1.0 /usr/lib/libgdal.so.27 &&\
+    ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcrypto.so.10 &&\
+    ln -s /usr/lib/x86_64-linux-gnu/libpng16.so /usr/lib/x86_64-linux-gnu/libpng15.so.15 &&\
+    ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib/x86_64-linux-gnu/libjpeg.so.62 &&\
+    ln -s /usr/lib/x86_64-linux-gnu/libpcre.so /usr/lib/x86_64-linux-gnu/libpcre.so.1
+
 WORKDIR /root
