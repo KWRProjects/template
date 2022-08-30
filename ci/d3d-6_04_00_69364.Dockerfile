@@ -57,6 +57,6 @@ RUN pip3 install -U pip &&\
 #WORKDIR /root/Software/Python/nefis-python-0.4.0
 #RUN pip3 install ./dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 #RUN cp -rf ./lib/* /usr/local/lib/
-#RUN export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+#RUN LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ; export LD_LIBRARY_PATH
 
 WORKDIR /root
