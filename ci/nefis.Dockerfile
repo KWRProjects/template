@@ -2,6 +2,7 @@ FROM osgeo/gdal:ubuntu-full-3.1.0
 
 RUN apt-get update
 RUN apt-get install -y \
+    software-properties-common \
     build-essential \
     autoconf \
     pkg-config \
