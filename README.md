@@ -22,7 +22,8 @@ fig, ax = plt.subplots(figsize=(15, 7))
 
 # set layout, save and close figure
 plt.tight_layout(rect=[0, 0, 1, 0.95])
-plt.savefig()
+# plt.savefig(file_fig, dpi=600, bbox_inches="tight")
+plt.savefig(file_fig, dpi=600)
 plt.close()
 ```
 
