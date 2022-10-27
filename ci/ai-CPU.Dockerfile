@@ -1,12 +1,20 @@
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu18.04
+FROM python:3.8
 LABEL maintainer quanpan302@hotmail.com
 
-RUN apt update && apt install -y tzdata
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ="Europe/Amsterdam"
-RUN apt-get install -y --no-install-recommends \
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    vim \
+    tzdata \
+    keyboard-configuration \
+    ca-certificates \
     build-essential \
     cmake \
     git \
+    curl \
     wget \
     libatlas-base-dev \
     libboost-all-dev \
@@ -17,6 +25,10 @@ RUN apt-get install -y --no-install-recommends \
     libleveldb-dev \
     liblmdb-dev \
     libopencv-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libgtk2.0-dev \
     libprotobuf-dev \
     libsnappy-dev \
     protobuf-compiler \
