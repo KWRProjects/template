@@ -50,14 +50,14 @@ COPY ai.caffe.Makefile.config py-faster-rcnn/caffe-fast-rcnn/Makefile.config
 #    INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial && \
 #    LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial && \
 
-RUN cd py-faster-rcnn/lib && \
-    make
-
-RUN cd py-faster-rcnn/caffe-fast-rcnn && \
-    make && \
-    make pycaffe
-
-RUN cd py-faster-rcnn && \
-    ./data/scripts/fetch_faster_rcnn_models.sh
+#RUN cd py-faster-rcnn/lib && \
+#    make
+#
+#RUN cd py-faster-rcnn/caffe-fast-rcnn && \
+#    make && \
+#    make pycaffe
+#
+#RUN cd py-faster-rcnn && \
+#    ./data/scripts/fetch_faster_rcnn_models.sh
 
 WORKDIR /root

@@ -20,8 +20,8 @@ docker push kwrprojects/nefis:latest
 docker build --no-cache -t kwrprojects/digitaltwins:latest -f ./ci/digitaltwins.Dockerfile .
 docker push kwrprojects/digitaltwins:latest
 
-docker build --progress=plain --no-cache -t kwrprojects/ai -f ai.Dockerfile .
-docker push kwrprojects/ai:latest
+docker build --progress=plain --no-cache -t kwrprojects/ai:cpu -f ai-CPU.Dockerfile .
+docker push kwrprojects/ai:cpu
 
  
 docker builder prune -af
