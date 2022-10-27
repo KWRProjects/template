@@ -1,7 +1,9 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu18.04
 LABEL maintainer quanpan302@hotmail.com
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y tzdata
+ENV TZ="Europe/Amsterdam"
+RUN apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
     git \
