@@ -24,38 +24,40 @@ RUN apt-get update && \
     libhdf5-dev \
     libleveldb-dev \
     liblmdb-dev \
-    libopencv-dev \
     libjpeg-dev \
     libpng-dev \
     libtiff-dev \
     libgtk2.0-dev \
+    libopencv-dev \
     libprotobuf-dev \
     libsnappy-dev \
-    protobuf-compiler \
-    python-dev \
-    python-numpy \
-    python-pip \
-    python-opencv \
-    python-setuptools \
-    python-scipy && \
+    python3-opencv \
+    protobuf-compiler && \
     rm -rf /var/lib/apt/lists/*
 
-RUN file="$(find /usr -iname "*hdf5.h*")" && echo $file
+RUN pip3 install \
+    setuptools \
+    easydict \
+    cython \
+    scipy \
+    numpy \
+    pandas \
+    matplotlib
 
 WORKDIR /root/Software
-RUN pip install easydict
-RUN pip install cython
-
 RUN git clone --recursive https://github.com/phtruongan/py-faster-rcnn.git
-
-RUN cd py-faster-rcnn/lib && make
-
 COPY ai.caffe.Makefile.config py-faster-rcnn/caffe-fast-rcnn/Makefile.config
 #    INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial && \
 #    LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial && \
+
+RUN cd py-faster-rcnn/lib && \
+    make
+
 RUN cd py-faster-rcnn/caffe-fast-rcnn && \
     make && \
     make pycaffe
-RUN cd py-faster-rcnn && ./data/scripts/fetch_faster_rcnn_models.sh
+
+RUN cd py-faster-rcnn && \
+    ./data/scripts/fetch_faster_rcnn_models.sh
 
 WORKDIR /root
