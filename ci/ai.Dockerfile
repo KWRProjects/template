@@ -33,8 +33,11 @@ RUN file="$(find /usr -iname "*hdf5.h*")" && echo $file
 WORKDIR /root/Software
 RUN pip install easydict
 RUN pip install cython
+
 RUN git clone --recursive https://github.com/phtruongan/py-faster-rcnn.git
+
 RUN cd py-faster-rcnn/lib && make
+
 COPY ai.caffe.Makefile.config py-faster-rcnn/caffe-fast-rcnn/Makefile.config
 RUN cd py-faster-rcnn/caffe-fast-rcnn && \
     make && \
