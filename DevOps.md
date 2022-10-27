@@ -1,5 +1,7 @@
 # Docker
 
+To display all the stdour: build --progress=plain
+
 ```shell
 docker images
 docker rmi
@@ -13,11 +15,15 @@ docker build --no-cache -t kwrprojects/d3d:6_04_00_69364 -f ./ci/d3d-6_04_00_693
 docker push kwrprojects/d3d:6_04_00_69364
 
 docker build --no-cache -t kwrprojects/nefis -f ./ci/nefis.Dockerfile .
-docker push kwrprojects/nefis
+docker push kwrprojects/nefis:latest
 
 docker build --no-cache -t kwrprojects/digitaltwins:latest -f ./ci/digitaltwins.Dockerfile .
 docker push kwrprojects/digitaltwins:latest
 
+docker build --progress=plain --no-cache -t kwrprojects/ai -f ai.Dockerfile .
+docker push kwrprojects/ai:latest
+
+ 
 docker builder prune -af
 docker system prune -f
 ```
