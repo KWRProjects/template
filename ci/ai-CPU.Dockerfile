@@ -43,7 +43,8 @@ RUN pip3 install \
     numpy \
     pandas \
     matplotlib \
-    scikit-learn
+    scikit-learn \
+    tf-models-official
 
 WORKDIR /root/Software
 RUN git clone --recursive https://github.com/phtruongan/py-faster-rcnn.git
