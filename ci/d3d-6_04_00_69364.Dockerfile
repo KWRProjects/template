@@ -19,8 +19,8 @@ RUN wget https://www.python.org/ftp/python/3.8.9/Python-3.8.9.tgz &&\
     tar xvf Python-3.8.9.tgz &&\
     rm -f Python-3.8.9.tgz
 
-COPY nefis-python-0.4.0 /root/Software/Python/nefis-python-0.4.0
-RUN echo $(ls -alh /root/Software)
+#COPY nefis-python-0.4.0 /root/Software/Python/nefis-python-0.4.0
+#RUN echo $(ls -alh /root/Software)
 
 WORKDIR /root/Software/torque-6.0.1
 RUN ./autogen.sh &&\
@@ -28,15 +28,18 @@ RUN ./autogen.sh &&\
     make 2>&1 | tee torque-m.txt &&\
     make install 2>&1 | tee torque-mi.txt &&\
     ls /opt/torque6/bin && ls /opt/torque6/lib
-RUN export PATH=/opt/torque6/bin:$PATH && echo $PATH
-RUN export LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
+ENV PATH=/opt/torque6/bin:$PATH
+ENV LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH
+#RUN export PATH=/opt/torque6/bin:$PATH && echo $PATH
+#RUN export LD_LIBRARY_PATH=/opt/torque6/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
 
 WORKDIR /root/Software/mpich-3.2
 RUN ./configure --prefix=/opt/mpich2 2>&1 | tee mpich-c.txt &&\
     make 2>&1 | tee mpich-m.txt &&\
     make install 2>&1 | tee mpich-mi.txt &&\
     ls /opt/mpich2/bin
-RUN export PATH=/opt/mpich2/bin:$PATH && echo $LD_LIBRARY_PATH
+ENV PATH=/opt/mpich2/bin:$PATH
+#RUN export PATH=/opt/mpich2/bin:$PATH && echo $PATH
 
 WORKDIR /root/Software/Python-3.8.9
 RUN ./configure --enable-optimizations &&\
@@ -57,5 +60,7 @@ RUN pip3 install -U pip &&\
 #RUN pip3 install ./dist/nefis-0.4.0-cp38-cp38-linux_x86_64.whl
 #RUN cp -rf ./lib/* /usr/local/lib/
 #RUN export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH && echo $LD_LIBRARY_PATH
+
+ENV LD_LIBRARY_PATH=/root/Software/Delft3D-6_04_00_69364/lnx64/lib:$LD_LIBRARY_PATH
 
 WORKDIR /root
